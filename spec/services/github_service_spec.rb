@@ -51,7 +51,7 @@ describe GithubService do
         expect(starred).to have_key(:private)
     end
     
-    it "returns the number of a user's organizations", :vcr do
+    it "returns a list of a user's organizations", :vcr do
       user_organizations = GithubService.new(ENV["GITHUB_USER_TOKEN"]).organizations
       organization = user_organizations.first
 
@@ -59,8 +59,24 @@ describe GithubService do
       expect(organization).to have_key(:login)
       expect(organization).to have_key(:public_members_url)
       expect(organization).to have_key(:repos_url)
-    end  
+    end
+    
+    it "returns a list of a user's commits", :vcr do
+      binding.pry
+      all_repos = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_commits(bermannoah)
+    end
+  
+  end
+  
+  context "#repos" do
+    xit "can post a new repo", :vcr do
+      posted_repo_response = GithubService.new(ENV["GITHUB_USER_TOKEN"]).create_repo
       
+      expect(posted_repo_response).to be_an(Array)
+      expect(posted_repo_response).to have_key(:login)
+      expect(posted_repo_response).to have_key(:public_members_url)
+      expect(posted_repo_response).to have_key(:repos_url)
+    end
   end
   
 end

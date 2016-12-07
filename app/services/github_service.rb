@@ -9,13 +9,14 @@ class GithubService
     end
   end
   
-  def repos
-    response = conn.get("/user/repos")
-    JSON.parse(response.body, symbolize_names: true)
-  end
   
   def user
     response = conn.get("/user")
+    JSON.parse(response.body, symbolize_names: true)
+  end
+  
+  def repos
+    response = conn.get("/user/repos")
     JSON.parse(response.body, symbolize_names: true)
   end
   
@@ -28,8 +29,39 @@ class GithubService
     response = conn.get("/user/orgs")
     JSON.parse(response.body, symbolize_names: true)
   end
-
   
+  def find_commits(username)
+    response = conn.get("/user/repos")
+    all_repos = JSON.parse(response.body, symbolize_names: true)
+    commits = all_repos.map do |repos|
+      conn.get("/events/#{username}/#{repo[:name]}")
+  end
+    
+  def create_repo(name = "Hello-World",
+                  description = "This is a test repo.",
+                  homepage = "https://github.com",
+                  private = false,
+                  has_issues = true,
+                  has_wiki = true,
+                  has_downloads = true)
+                  
+    response = conn.post do |contents|
+      contents.url("/user/repos")
+      contents.headers['Content-Type'] = 'application/json'
+      contents.body = {
+          "name": "#{name}",
+          "description": "#{description}",
+          "homepage": "#{homepage}",
+          "private": "#{private}",
+          "has_issues": "#{has_issues}",
+          "has_wiki": "#{has_wiki}",
+          "has_downloads": "#{has_downloads}"
+        }
+    end
+    
+    JSON.parse(response.body, symbolize_names: true)
+  end
+    
   private
     
     attr_reader :token, :conn

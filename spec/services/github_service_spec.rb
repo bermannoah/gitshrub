@@ -3,7 +3,7 @@ require 'rails_helper'
 describe GithubService do
   context "#repositories" do
     it "returns all repositories for a user" do
-      repos = GithubService.new(token).repos
+      repos = GithubService.new(ENV["GITHUB_USER_TOKEN"]).repos
       repo = repos.first
       
       expect(repos).to be_an(Array)

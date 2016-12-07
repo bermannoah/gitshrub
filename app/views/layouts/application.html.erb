@@ -10,6 +10,23 @@
   </head>
 
   <body>
+    <ul class="tab tab-block">
+      <li class="tab-item">
+          <a href="#">GitShrub</a>
+      </li>
+      <li class="tab-item">
+          <a href="#">Repos</a>
+      </li>
+      <li class="tab-item">
+          <a href="#">Issues</a>
+      </li>
+      <li class="tab-item">
+          <a href="#">Gists</a>
+      </li>
+      <li class="tab-item">
+        <%= link_to "Login", "https://github.com/login/oauth/authorize?client_id=#{ENV['GITHUB_CLIENT_ID']}&scope=repo" %>
+      </li>
+    </ul>
     <%= yield %>
   </body>
 </html>

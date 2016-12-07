@@ -62,8 +62,13 @@ describe GithubService do
     end
     
     it "returns a list of a user's commits", :vcr do
-      binding.pry
-      all_repos = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_commits(bermannoah)
+      commits_for_all_repos = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_commits("bermannoah")
+      first_commit = commits_for_all_repos.first
+
+      expect(commits_for_all_repos).to be_an(Array)
+      expect(first_commit[0][:payload][:commits][0]).to have_key(:sha)
+      expect(first_commit[0][:payload][:commits][0]).to have_key(:message)
+      expect(first_commit[0][:payload][:commits][0]).to have_key(:url)      
     end
   
   end

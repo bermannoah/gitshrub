@@ -33,8 +33,12 @@ class GithubService
   def find_commits(username)
     response = conn.get("/user/repos")
     all_repos = JSON.parse(response.body, symbolize_names: true)
-    commits = all_repos.map do |repos|
-      conn.get("/events/#{username}/#{repo[:name]}")
+    commits = all_repos.map do |repo|
+      if repo[:owner][:login] == username
+        single_response = conn.get("/repos/#{username}/#{repo[:name]}/events")
+        JSON.parse(single_response.body, symbolize_names: true)
+      end
+    end.compact
   end
     
   def create_repo(name = "Hello-World",
@@ -56,7 +60,7 @@ class GithubService
           "has_issues": "#{has_issues}",
           "has_wiki": "#{has_wiki}",
           "has_downloads": "#{has_downloads}"
-        }
+        }.to_json
     end
     
     JSON.parse(response.body, symbolize_names: true)

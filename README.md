@@ -1,24 +1,7 @@
-# README
+# GitShrub
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A Github clone (using the Github API) written in Rails. Mostly for practice with
+OAuth and API access techniques. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+[![Code Climate](https://codeclimate.com/github/bermannoah/gitshrub/badges/gpa.svg)](https://codeclimate.com/github/bermannoah/gitshrub)
+[![Test Coverage](https://codeclimate.com/github/bermannoah/gitshrub/badges/coverage.svg)](https://codeclimate.com/github/bermannoah/gitshrub/coverage)

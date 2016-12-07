@@ -9,7 +9,6 @@ class GithubService
     end
   end
   
-  
   def user
     response = conn.get("/user")
     JSON.parse(response.body, symbolize_names: true)
@@ -39,6 +38,15 @@ class GithubService
         JSON.parse(single_response.body, symbolize_names: true)
       end
     end.compact
+  end
+  
+  def find_friend_events
+    response = conn.get("/user/following")
+    all_friends = JSON.parse(response.body, symbolize_names: true)
+    friend_events = all_friends.map do |friend|
+      single_response = conn.get("users/#{friend[:login]}/events")
+      JSON.parse(single_response.body, symbolize_names: true)
+    end
   end
     
   def create_repo(name = "Hello-World",

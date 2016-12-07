@@ -70,6 +70,17 @@ describe GithubService do
       expect(first_commit[0][:payload][:commits][0]).to have_key(:message)
       expect(first_commit[0][:payload][:commits][0]).to have_key(:url)      
     end
+    
+    it "returns a list of public events from people a user is following", :vcr do
+      friend_events = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_friend_events
+      first_event = friend_events.first
+
+      expect(first_event).to be_an(Array)
+      expect(first_event[0]).to have_key(:type)
+      expect(first_event[0]).to have_key(:payload)
+      expect(first_event[0]).to have_key(:public)      
+    end
+
   
   end
   

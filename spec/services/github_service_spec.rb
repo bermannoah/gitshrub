@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe GithubService do
   context "#repositories" do
-    it "returns all repositories for a user" do
+    it "returns all repositories for a user", :vcr do
       VCR.use_cassette("#repos") do
 
         repos = GithubService.new(ENV["GITHUB_USER_TOKEN"]).repos

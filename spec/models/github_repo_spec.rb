@@ -2,8 +2,7 @@ require 'rails_helper'
 
 describe GithubRepo do
   context ".for_user(token)" do
-    it "returns repos for a user" do
-    VCR.use_cassette(".for_user") do
+    it "returns repos for a user", :vcr do
         repos = GithubRepo.for_user(ENV["GITHUB_USER_TOKEN"])
         repo = repos.first
         
@@ -12,7 +11,6 @@ describe GithubRepo do
         expect(repo).to respond_to(:name)
         expect(repo).to respond_to(:full_name)
         expect(repo).to respond_to(:description)
-      end
     end
   end
 end

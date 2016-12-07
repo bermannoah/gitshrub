@@ -23,6 +23,24 @@ describe GithubService do
       expect(user[:type]).to eq("User")
     end
     
+    it "returns the number of followed users for a user", :vcr do
+      user = GithubService.new(ENV["GITHUB_USER_TOKEN"]).user
+
+      expect(user).to be_a(Hash)
+      expect(user).to have_key(:name)
+      expect(user).to have_key(:followers)
+      expect(user[:following]).to be_a(Integer)
+    end
+    
+    it "returns the number of followers for a user", :vcr do
+      user = GithubService.new(ENV["GITHUB_USER_TOKEN"]).user
+
+      expect(user).to be_a(Hash)
+      expect(user).to have_key(:name)
+      expect(user).to have_key(:followers)
+      expect(user[:followers]).to be_a(Integer)
+    end
+    
     it "returns the number of a user's starred repos", :vcr do
         starred_repos = GithubService.new(ENV["GITHUB_USER_TOKEN"]).starred
         starred = starred_repos.first

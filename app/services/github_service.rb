@@ -14,6 +14,11 @@ class GithubService
     JSON.parse(response.body, symbolize_names: true)
   end
   
+  def user
+    response = conn.get("/user")
+    JSON.parse(response.body, symbolize_names: true)
+  end
+  
   private
     
     attr_reader :token, :conn

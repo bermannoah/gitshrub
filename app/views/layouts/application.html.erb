@@ -24,11 +24,7 @@
           <a href="#">Gists</a>
       </li>
       <li class="tab-item">
-        <% if current_user %>
-          current_user.username
-        <% else %>
-          <%= link_to "Login", "https://github.com/login/oauth/authorize?client_id=#{ENV['GITHUB_CLIENT_ID']}&scope=repo" %>
-        <% end %>
+        <%= link_to "Login", "https://github.com/login/oauth/authorize?client_id=#{ENV['GITHUB_CLIENT_ID']}&scope=repo" %>
       </li>
     </ul>
     <%= yield %>

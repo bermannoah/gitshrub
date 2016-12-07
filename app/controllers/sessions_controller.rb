@@ -17,6 +17,6 @@ class SessionsController < ApplicationController
 
 	  session[:user_id] = user.id
 
-	  redirect_to dashboard_index_path
+	  redirect_to pages_path
 	end
 end

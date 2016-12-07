@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   
   get 'auth/github/callback', to: 'sessions#create'
   
-  resources :dashboard, only: [:index]
+  resources :pages, only: [:index]
   
 end

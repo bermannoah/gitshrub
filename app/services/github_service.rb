@@ -44,7 +44,6 @@ class GithubService
   def create_repo(name = "Hello-World",
                   description = "This is a test repo.",
                   homepage = "https://github.com",
-                  private = false,
                   has_issues = true,
                   has_wiki = true,
                   has_downloads = true)
@@ -53,13 +52,12 @@ class GithubService
       contents.url("/user/repos")
       contents.headers['Content-Type'] = 'application/json'
       contents.body = {
-          "name": "#{name}",
-          "description": "#{description}",
-          "homepage": "#{homepage}",
-          "private": "#{private}",
-          "has_issues": "#{has_issues}",
-          "has_wiki": "#{has_wiki}",
-          "has_downloads": "#{has_downloads}"
+          name: "#{name}",
+          description: "#{description}",
+          homepage: "#{homepage}",
+          has_issues: "#{has_issues}",
+          has_wiki: "#{has_wiki}",
+          has_downloads: "#{has_downloads}"
         }.to_json
     end
     

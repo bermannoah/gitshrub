@@ -21,6 +21,7 @@ gem 'faraday'
 group :development, :test do
   gem 'byebug', platform: :mri
 	gem 'pry'
+  gem 'faker'
 	gem 'rspec-rails'
   gem 'simplecov'
   gem 'codeclimate-test-reporter', '~> 1.0.0'

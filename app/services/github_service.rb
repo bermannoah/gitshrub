@@ -23,6 +23,11 @@ class GithubService
     response = conn.get("/user/starred")
     JSON.parse(response.body, symbolize_names: true)
   end
+  
+  def organizations
+    response = conn.get("/user/orgs")
+    JSON.parse(response.body, symbolize_names: true)
+  end
 
   
   private

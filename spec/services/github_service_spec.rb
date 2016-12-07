@@ -49,7 +49,18 @@ describe GithubService do
         expect(starred).to have_key(:owner)
         expect(starred).to have_key(:name)
         expect(starred).to have_key(:private)
-      end
+    end
+    
+    it "returns the number of a user's organizations", :vcr do
+      user_organizations = GithubService.new(ENV["GITHUB_USER_TOKEN"]).organizations
+      organization = user_organizations.first
+
+      expect(user_organizations).to be_an(Array)
+      expect(organization).to have_key(:login)
+      expect(organization).to have_key(:public_members_url)
+      expect(organization).to have_key(:repos_url)
+    end  
+      
   end
   
 end

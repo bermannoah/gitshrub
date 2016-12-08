@@ -19,9 +19,12 @@
     <h3 class="card-header">Mentions on:</h3>
     <div class="card-body">
       <% @mentions.each do |mention| %>
-        <%= link_to mention[:subject][:title], mention[:subject][:latest_comment_url], target: "_blank" %>
+        <%= link_to mention[:subject][:title], mention[:subject][:latest_comment_url]
+                                                                .gsub(/api./, "")
+                                                                .gsub(/\/repos/, "")
+                                                                .gsub(/issues/, "pull")
+                                                                .gsub(/comments\//, "#{mention[:subject][:url].last(2)}#issuecomment-"), target: "_blank" %>
       <% end %>
     </div>
   </div>
-</body>
-  
+</body>  

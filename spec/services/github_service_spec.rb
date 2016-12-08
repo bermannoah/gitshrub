@@ -80,6 +80,26 @@ describe GithubService do
       expect(first_event[0]).to have_key(:payload)
       expect(first_event[0]).to have_key(:public)      
     end
+    
+    it "returns a list of open pull requests the user has opened", :vcr do
+      all_pull_requests = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_pull_requests("bermannoah")
+      first_pull_request = all_pull_requests.second
+
+      expect(first_pull_request).to be_an(Array)
+      expect(first_pull_request[0]).to have_key(:title)
+      expect(first_pull_request[0]).to have_key(:state)
+      expect(first_pull_request[0]).to have_key(:user)
+      expect(first_pull_request[0][:state]).to eq("open")            
+    end
+    
+    it "returns a list of open @mentions", :vcr do
+      all_mentions = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_mentions
+      
+      expect(all_mentions).to be_an(Array)
+      expect(all_mentions[0]).to have_key(:unread)
+      expect(all_mentions[0]).to have_key(:subject)
+      expect(all_mentions[0]).to have_key(:repository)
+    end
 
   
   end

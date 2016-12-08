@@ -59,5 +59,8 @@ class User < ApplicationRecord
       mention
     end
   end
-
+  
+  def create_repo(name)
+    NewRepoService.new(ENV["GITHUB_USER_TOKEN"]).create_repo(name = name )
+  end
 end

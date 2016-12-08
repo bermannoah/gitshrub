@@ -17,4 +17,10 @@ class UsersController < ApplicationController
     @pull_requests = user.return_pull_requests(user[:username])
   end
   
+  def new_repo
+    user = User.find_by(uid: current_user.uid)
+    user.create_repo(params["name"])
+    redirect_to repos_path
+  end
+      
 end

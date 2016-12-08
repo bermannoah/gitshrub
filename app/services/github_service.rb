@@ -40,6 +40,18 @@ class GithubService
     end.compact
   end
   
+  def find_pull_requests(username)
+    response = conn.get("/user/repos")
+    all_repos = JSON.parse(response.body, symbolize_names: true)
+    pull_requests = all_repos.map do |repo|
+      if repo[:owner][:login] == username
+        single_response = conn.get("/repos/#{username}/#{repo[:name]}/pulls")
+        JSON.parse(single_response.body, symbolize_names: true)
+      end
+    end.compact
+  end
+      
+      
   def find_friend_events
     response = conn.get("/user/following")
     all_friends = JSON.parse(response.body, symbolize_names: true)

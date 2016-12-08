@@ -6,7 +6,10 @@
     <% activity.each do |individual| %>
   <div class="card col-3">
     <div class="card-body">
-          <%= individual[:actor][:login] %>
+          <%= link_to individual[:actor][:login], individual[:actor][:url].gsub(/api./, "") %>
+          <p>
+            <%= individual[:type].gsub(/Event/, "") %>'d <%= link_to individual[:repo][:name], individual[:repo][:url].gsub(/api./, "").gsub(/\/repos/, ""), target: "_blank" %>
+          </p>
     </div>
   </div>
     <% end %>

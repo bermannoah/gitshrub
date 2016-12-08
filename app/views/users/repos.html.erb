@@ -9,3 +9,14 @@
   </div>
 </div>
 <% end %>
+
+<div>
+  <% @pull_requests[0].each do |pull_request| %>
+  <div class="card col-3">
+    <h3 class="card-header"><%= link_to pull_request[:title].titleize, pull_request[:html_url], target: "_blank" %></h3>
+  </div>
+  <% end %>  
+</div>
+
+
+

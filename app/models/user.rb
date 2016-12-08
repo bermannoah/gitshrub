@@ -36,9 +36,7 @@ class User < ApplicationRecord
   
   def return_pull_requests(username)
     pull_requests = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_pull_requests(username)
-    pull_requests.map do |pr|
-      pr
-    end
+    pull_requests.reject { |pr| pr[0].nil? }
   end 
   
 end

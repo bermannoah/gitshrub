@@ -8,6 +8,7 @@ class UsersController < ApplicationController
     @following = user.return_following_count
     @repos = user.return_repos
     @organizations = user.return_organization_names
+    @commits = user.return_commits(user[:username])
   end
   
   def repos

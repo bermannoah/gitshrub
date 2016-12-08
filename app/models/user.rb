@@ -39,4 +39,10 @@ class User < ApplicationRecord
     pull_requests.reject { |pr| pr[0].nil? }
   end 
   
+  def return_commits(username)
+    commits = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_commits(username)
+    commits.map do |commit|
+      commit
+    end
+  end
 end

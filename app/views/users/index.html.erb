@@ -26,3 +26,16 @@
     <% end %>
   </div>
 </div>
+
+<div class="card col-3">
+  <h3 class="card-header">Commits</h3>
+  <div class="card-body">
+    <% @commits.each do |commit| %>
+      <% commit.each do |individual| %>
+        <% if individual[:type] == "PushEvent" %>
+          <%= link_to individual[:payload][:commits][0][:message], individual[:repo][:url].gsub(/api./, "").gsub(/\/repos/, ""), target: "_blank" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

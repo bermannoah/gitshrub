@@ -1,3 +1,15 @@
-<%= image_tag("#{@avatar}", class: "card col-3 img-responsive") %>
+<div class="card col-3">
+  
+  <%= image_tag("#{@avatar}", class: "card-image img-responsive") %>
 
-🌟'd repos: <%= @stars %>
+  <h3 class="card-header">Hello <%= current_user.username %>!</h3>
+
+  <div class="card-body">
+    
+    <p>🌟'd repos: <%= @stars %></p>
+
+    Followers: <%= @followers %>
+
+    Following: <%= @following %>
+  </div>
+</div>

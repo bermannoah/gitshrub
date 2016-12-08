@@ -28,7 +28,7 @@ describe GithubService do
 
       expect(user).to be_a(Hash)
       expect(user).to have_key(:name)
-      expect(user).to have_key(:followers)
+      expect(user).to have_key(:following)
       expect(user[:following]).to be_a(Integer)
     end
     

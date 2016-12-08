@@ -8,9 +8,13 @@
     
     <p>🌟'd repos: <%= @stars %></p>
 
-    Followers: <%= @followers %>
+    <p>Followers: <%= @followers %></p>
 
-    Following: <%= @following %>
+    <p>Following: <%= @following %></p>
+    
+    Member of: <% @organizations.each do |organization| %>
+                    <%= link_to organization[:login], "https://github.com/#{organization[:login]}", target: "_blank" %>
+                  <% end %>
   </div>
 </div>
 

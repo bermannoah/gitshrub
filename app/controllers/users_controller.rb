@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @followers =  user.return_followers_count
     @following = user.return_following_count
     @repos = user.return_repos
+    @organizations = user.return_organization_names
   end
   
 end

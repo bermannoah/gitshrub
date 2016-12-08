@@ -70,17 +70,29 @@ describe GithubService do
       expect(first_commit[0][:payload][:commits][0]).to have_key(:message)
       expect(first_commit[0][:payload][:commits][0]).to have_key(:url)      
     end
+    
+    it "returns a list of public events from people a user is following", :vcr do
+      friend_events = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_friend_events
+      first_event = friend_events.first
+
+      expect(first_event).to be_an(Array)
+      expect(first_event[0]).to have_key(:type)
+      expect(first_event[0]).to have_key(:payload)
+      expect(first_event[0]).to have_key(:public)      
+    end
+
   
   end
   
   context "#repos" do
-    xit "can post a new repo", :vcr do
-      posted_repo_response = GithubService.new(ENV["GITHUB_USER_TOKEN"]).create_repo
-      
-      expect(posted_repo_response).to be_an(Array)
-      expect(posted_repo_response).to have_key(:login)
-      expect(posted_repo_response).to have_key(:public_members_url)
-      expect(posted_repo_response).to have_key(:repos_url)
+    it "can post a new repo", :vcr do
+      repo_name = Faker::Hacker.noun
+      posted_repo_response = GithubService.new(ENV["GITHUB_USER_TOKEN"]).create_repo(name = repo_name )
+
+      expect(posted_repo_response).to be_a(Hash)
+      expect(posted_repo_response).to have_key(:full_name)
+      expect(posted_repo_response).to have_key(:owner)
+      expect(posted_repo_response[:owner]).to have_key(:login)
     end
   end
   

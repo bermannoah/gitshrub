@@ -21,5 +21,9 @@
   background-attachment: fixed;
   background-size: cover;
   background-color: transparent;
-  padding-top: 5em;
+}
+
+.landing-header {
+  text-align: center;
+  font-weight: bold;
 }

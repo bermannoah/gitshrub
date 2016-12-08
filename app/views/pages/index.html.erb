@@ -1,4 +1,30 @@
-<blockquote>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-  <cite>- Source</cite>
-</blockquote>
+<body class="landing">
+  <h1 class="landing-header">Welcome to GitShrub!</h1>
+  
+  <h3 class="card-header">Latest from your friends</h3>
+  <% @following_activity.each do |activity| %>
+    <% activity.each do |individual| %>
+  <div class="card col-3">
+    <div class="card-body">
+          <%= link_to individual[:actor][:login], individual[:actor][:url].gsub(/api./, "") %>
+          <p>
+            <%= individual[:type].gsub(/Event/, "") %>'d <%= link_to individual[:repo][:name], individual[:repo][:url].gsub(/api./, "").gsub(/\/repos/, ""), target: "_blank" %>
+          </p>
+    </div>
+  </div>
+    <% end %>
+  <% end %>
+  
+  <div class="card col-3">
+    <h3 class="card-header">Mentions on:</h3>
+    <div class="card-body">
+      <% @mentions.each do |mention| %>
+        <%= link_to mention[:subject][:title], mention[:subject][:latest_comment_url]
+                                                                .gsub(/api./, "")
+                                                                .gsub(/\/repos/, "")
+                                                                .gsub(/issues/, "pull")
+                                                                .gsub(/comments\//, "#{mention[:subject][:url].last(2)}#issuecomment-"), target: "_blank" %>
+      <% end %>
+    </div>
+  </div>
+</body>  

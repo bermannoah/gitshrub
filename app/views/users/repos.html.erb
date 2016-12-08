@@ -1,0 +1,30 @@
+<div class="input-group col-3">
+  <%= form_tag(:controller => 'users', :action => 'new_repo') do %>
+    <%= text_field_tag(:name) %>
+    <%= submit_tag("Create new repo") %>
+  <% end %>
+</div>
+
+
+<% @repos.each do |repo| %>
+<div class="card col-3">
+  <h3 class="card-header"><%= link_to repo[:name].titleize, repo[:html_url], target: "_blank" %></h3>
+  <div class="card-body">
+      <p><%= repo[:description] %></p>
+      <p>Forks: <%= repo[:forks_count] %></p>
+      <p>Stars: <%= repo[:stargazers_count] %></p>
+      <p>Watchers: <%= repo[:watchers_count] %></p>    
+  </div>
+</div>
+<% end %>
+
+<div>
+  <% @pull_requests[0].each do |pull_request| %>
+  <div class="card col-3">
+    <h3 class="card-header"><%= link_to pull_request[:title].titleize, pull_request[:html_url], target: "_blank" %></h3>
+  </div>
+  <% end %>  
+</div>
+
+
+

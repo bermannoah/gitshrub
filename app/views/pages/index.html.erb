@@ -2,7 +2,7 @@
   <h1 class="landing-header">Welcome to GitShrub!</h1>
   
 <div class="container center-content">
-    
+  <% if current_user %>
     <h3 class="card col-3">Latest from your friends:</h3>
     <% @following_activity.each do |activity| %>
       <% activity.first(3).each do |individual| %>
@@ -16,10 +16,11 @@
         </div>
       <% end %>
     <% end %>
+    <% end %>
 </div>  
 
 <div class="container center-content mentions-align">
-  <% if @mentions != [] %>
+  <% if @mentions != [] && if current_user %>
   <h3 class="card card-header col-3">Mentions on:</h3>
   <div class="card col-3">
     <div class="card-body">
@@ -33,11 +34,6 @@
     </div>
   </div>
   <% end %>
+  <% end %>
 </div>
-</body>  
-
-
-
-
-
-
+</body>

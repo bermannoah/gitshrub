@@ -10,27 +10,11 @@
   </head>
 
   <body>
-    <ul class="tab tab-block">
-      <li class="tab-item">
-          <a href="/">GitShrub</a>
-      </li>
-      <li class="tab-item">
-          <a href="#">Repos</a>
-      </li>
-      <li class="tab-item">
-          <a href="#">Issues</a>
-      </li>
-      <li class="tab-item">
-          <a href="#">Gists</a>
-      </li>
-      <li class="tab-item">
-        <% if current_user %>
-          <%= link_to "Hello, #{current_user.username}.", users_path %>
-        <% else %>
-          <%= link_to "Login", "https://github.com/login/oauth/authorize?client_id=#{ENV['GITHUB_CLIENT_ID']}&scope=repo" %>
-        <% end %>
-      </li>
-    </ul>
+    <% if current_user %>
+    <%= render "logout"  %>
+    <% else %>
+    <%= render "login" %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

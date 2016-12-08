@@ -15,6 +15,10 @@
  */
  
 /* Whole site styles */
+a {
+  text-decoration: none;
+}
+
 .center-content {
   display: flex;
   justify-content: center;

@@ -3,15 +3,15 @@ require 'rails_helper'
 describe GithubService do
   context "#repositories" do
     it "returns all repositories for a user", :vcr do
-        repos = GithubService.new(ENV["GITHUB_USER_TOKEN"]).repos
-        repo = repos.first
-      
-        expect(repos).to be_an(Array)
-        expect(repo).to have_key(:name)
-        expect(repo).to have_key(:full_name)
-        expect(repo).to have_key(:description)
-      end
+      repos = GithubService.new(ENV["GITHUB_USER_TOKEN"]).repos
+      repo = repos.first
+    
+      expect(repos).to be_an(Array)
+      expect(repo).to have_key(:name)
+      expect(repo).to have_key(:full_name)
+      expect(repo).to have_key(:description)
     end
+  end
   
   context "#users" do
     it "returns the avatar for a user", :vcr do
@@ -42,13 +42,13 @@ describe GithubService do
     end
     
     it "returns the number of a user's starred repos", :vcr do
-        starred_repos = GithubService.new(ENV["GITHUB_USER_TOKEN"]).starred
-        starred = starred_repos.first
+      starred_repos = GithubService.new(ENV["GITHUB_USER_TOKEN"]).starred
+      starred = starred_repos.first
 
-        expect(starred_repos).to be_an(Array)
-        expect(starred).to have_key(:owner)
-        expect(starred).to have_key(:name)
-        expect(starred).to have_key(:private)
+      expect(starred_repos).to be_an(Array)
+      expect(starred).to have_key(:owner)
+      expect(starred).to have_key(:name)
+      expect(starred).to have_key(:private)
     end
     
     it "returns a list of a user's organizations", :vcr do

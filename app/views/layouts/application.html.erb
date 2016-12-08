@@ -25,7 +25,7 @@
       </li>
       <li class="tab-item">
         <% if current_user %>
-          <%= "Hello, #{current_user.username}." %>
+          <%= link_to "Hello, #{current_user.username}.", users_path %>
         <% else %>
           <%= link_to "Login", "https://github.com/login/oauth/authorize?client_id=#{ENV['GITHUB_CLIENT_ID']}&scope=repo" %>
         <% end %>

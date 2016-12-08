@@ -10,4 +10,10 @@ class UsersController < ApplicationController
     @organizations = user.return_organization_names
   end
   
+  def repos
+    user = User.find_by(uid: current_user.uid)
+    @repos = user.return_repos
+    @pull_requests = user.return_pull_requests(user[:username])
+  end
+  
 end

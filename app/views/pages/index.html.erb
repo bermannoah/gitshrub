@@ -1,4 +1,15 @@
 <body class="landing">
   <h1 class="landing-header">Welcome to GitShrub!</h1>
+  
+  <h3 class="card-header">Latest from your friends</h3>
+  <% @following_activity.each do |activity| %>
+    <% activity.each do |individual| %>
+  <div class="card col-3">
+    <div class="card-body">
+          <%= individual[:actor][:login] %>
+    </div>
+  </div>
+    <% end %>
+  <% end %>
 </body>
   

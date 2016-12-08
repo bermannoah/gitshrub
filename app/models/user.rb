@@ -45,4 +45,12 @@ class User < ApplicationRecord
       commit
     end
   end
+  
+  def return_following_activity
+    friend_events = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_friend_events
+    friend_events.map do |event|
+      event
+    end
+  end
+
 end

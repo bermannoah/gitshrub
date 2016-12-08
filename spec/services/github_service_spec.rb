@@ -91,6 +91,15 @@ describe GithubService do
       expect(first_pull_request[0]).to have_key(:user)
       expect(first_pull_request[0][:state]).to eq("open")            
     end
+    
+    it "returns a list of open @mentions", :vcr do
+      all_mentions = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_mentions
+      
+      expect(all_mentions).to be_an(Array)
+      expect(all_mentions[0]).to have_key(:unread)
+      expect(all_mentions[0]).to have_key(:subject)
+      expect(all_mentions[0]).to have_key(:repository)
+    end
 
   
   end

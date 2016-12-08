@@ -60,6 +60,11 @@ class GithubService
       JSON.parse(single_response.body, symbolize_names: true)
     end
   end
+  
+  def find_mentions
+    response = conn.get("/notifications")
+    JSON.parse(response.body, symbolize_names: true)
+  end
     
   def create_repo(name = "Hello-World",
                   description = "This is a test repo.",

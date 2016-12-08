@@ -13,6 +13,12 @@
  *= require_tree .
  *= require_self
  */
+ 
+/* Whole site styles */
+.center-content {
+  display: flex;
+  justify-content: center;
+}
 /* Landing page style */
 .landing {
   background-image: linear-gradient(to bottom, rgba(255,255,255,0.9) 0%,rgba(255,255,255,0.3) 100%), url(https://source.unsplash.com/collection/325867/);
@@ -26,4 +32,12 @@
 .landing-header {
   text-align: center;
   font-weight: bold;
+}
+
+.center-activity {
+  position: relative;
+}
+
+.mentions-align {
+  margin-top: 10rem;
 }

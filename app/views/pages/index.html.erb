@@ -14,5 +14,14 @@
   </div>
     <% end %>
   <% end %>
+  
+  <div class="card col-3">
+    <h3 class="card-header">Mentions on:</h3>
+    <div class="card-body">
+      <% @mentions.each do |mention| %>
+        <%= link_to mention[:subject][:title], mention[:subject][:latest_comment_url], target: "_blank" %>
+      <% end %>
+    </div>
+  </div>
 </body>
   

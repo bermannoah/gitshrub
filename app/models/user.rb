@@ -52,5 +52,12 @@ class User < ApplicationRecord
       event
     end
   end
+  
+  def return_mentions
+    mentions = GithubService.new(ENV["GITHUB_USER_TOKEN"]).find_mentions
+    mentions.map do |mention|
+      mention
+    end
+  end
 
 end

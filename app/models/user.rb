@@ -5,8 +5,13 @@ class User < ApplicationRecord
     @avatar = user[:avatar_url]
   end
   
+  def return_star_count
+    stars = GithubService.new(ENV["GITHUB_USER_TOKEN"]).starred
+    @stars = stars.count
+  end
+  
   
   private
-    attr_reader :avatar
+    attr_reader :avatar, :stars
   
 end

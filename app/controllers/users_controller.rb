@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     @stars = user.return_star_count
     @followers =  user.return_followers_count
     @following = user.return_following_count
+    @repos = user.return_repos
   end
   
 end

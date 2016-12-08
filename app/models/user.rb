@@ -20,4 +20,11 @@ class User < ApplicationRecord
     following = user[:following]
   end
   
+  def return_repos
+    repos = GithubService.new(ENV["GITHUB_USER_TOKEN"]).repos
+    repos.map do |repo|
+      repo
+    end
+  end  
+  
 end

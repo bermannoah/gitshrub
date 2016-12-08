@@ -13,3 +13,12 @@
     Following: <%= @following %>
   </div>
 </div>
+
+<div class="card col-3">
+  <h3 class="card-header">Repos</h3>
+  <div class="card-body">
+    <% @repos.each do |repo| %>
+      <%= link_to repo[:name], repo[:html_url], target: "_blank" %>
+    <% end %>
+  </div>
+</div>

@@ -88,7 +88,8 @@ describe GithubService do
       expect(first_pull_request).to be_an(Array)
       expect(first_pull_request[0]).to have_key(:title)
       expect(first_pull_request[0]).to have_key(:state)
-      expect(first_pull_request[0]).to have_key(:user)      
+      expect(first_pull_request[0]).to have_key(:user)
+      expect(first_pull_request[0][:state]).to eq("open")            
     end
 
   

@@ -1,24 +1,27 @@
-<div class="input-group col-3">
+<div class="input-group center-content">
   <%= form_tag(:controller => 'users', :action => 'new_repo') do %>
-    <%= text_field_tag(:name) %>
-    <%= submit_tag("Create new repo") %>
+    New repo name: <%= text_field_tag :name, nil, class: "form-input center-content" %>
+    <%= submit_tag "Create new repo!", class: "btn center-content form-button-align" %>
   <% end %>
 </div>
 
-
-<% @repos.each do |repo| %>
-<div class="card col-3">
-  <h3 class="card-header"><%= link_to repo[:name].titleize, repo[:html_url], target: "_blank" %></h3>
-  <div class="card-body">
-      <p><%= repo[:description] %></p>
-      <p>Forks: <%= repo[:forks_count] %></p>
-      <p>Stars: <%= repo[:stargazers_count] %></p>
-      <p>Watchers: <%= repo[:watchers_count] %></p>    
+<h3 class="card-header center-content pr-alignment-style">Three recent repos:</h3>
+<div class="center-content">
+  <% @repos.first(3).each do |repo| %>
+  <div class="card col-3">
+    <h3 class="card-header"><%= link_to repo[:name].titleize, repo[:html_url], target: "_blank" %></h3>
+      <div class="card-body">
+          <p><%= repo[:description] %></p>
+          <p>Forks: <%= repo[:forks_count] %></p>
+          <p>Stars: <%= repo[:stargazers_count] %></p>
+          <p>Watchers: <%= repo[:watchers_count] %></p>    
+      </div>
   </div>
+  <% end %>
 </div>
-<% end %>
 
-<div>
+<h3 class="card-header center-content pr-alignment-style">Recent pull requests:</h3>
+<div class="center-content pr-alignment-style">
   <% @pull_requests[0].each do |pull_request| %>
   <div class="card col-3">
     <h3 class="card-header"><%= link_to pull_request[:title].titleize, pull_request[:html_url], target: "_blank" %></h3>

@@ -2,19 +2,19 @@
   
   <div class="card col-3">
     
-    <%= image_tag("#{@avatar}", class: "card-image img-responsive") %>
+    <%= image_tag("#{@presenter.avatar}", class: "card-image img-responsive") %>
 
     <h3 class="card-header">Hello <%= current_user.username %>!</h3>
 
     <div class="card-body">
       
-      <p>🌟'd repos: <%= @stars %></p>
+      <p>🌟'd repos: <%= @presenter.stars %></p>
 
-      <p>Followers: <%= @followers %></p>
+      <p>Followers: <%= @presenter.followers %></p>
 
-      <p>Following: <%= @following %></p>
+      <p>Following: <%= @presenter.following %></p>
       
-      Member of: <% @organizations.each do |organization| %>
+      Member of: <% @presenter.organizations.each do |organization| %>
                       <%= link_to organization[:login], "https://github.com/#{organization[:login]}", target: "_blank" %>
                     <% end %>
     </div>
@@ -23,7 +23,7 @@
   <div class="card col-3">
     <h3 class="card-header">Repos</h3>
     <div class="card-body">
-      <% @repos.each do |repo| %>
+      <% @presenter.repos.each do |repo| %>
         <%= link_to repo[:name], repo[:html_url], target: "_blank" %>
       <% end %>
     </div>
@@ -32,7 +32,7 @@
   <div class="card col-3">
     <h3 class="card-header">Commits</h3>
     <div class="card-body">
-      <% @commits.each do |commit| %>
+      <% @presenter.commits.each do |commit| %>
         <% commit.each do |individual| %>
           <% if individual[:type] == "PushEvent" %>
             <%= link_to individual[:payload][:commits][0][:message], individual[:repo][:url].gsub(/api./, "").gsub(/\/repos/, ""), target: "_blank" %>
